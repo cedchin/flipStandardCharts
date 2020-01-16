@@ -551,7 +551,8 @@ setAxis <- function(title, side, axisLabels, titlefont,
                 range <- rev(getDateAxisRange(axisLabels$ymd, range))
 
             # Override default tick positions if there are only a few bars
-            if (with.bars && length(axisLabels$labels) <= 10 && length(axisLabels$labels) >= 2)
+            if (with.bars && length(axisLabels$labels) <= 10 && 
+                length(axisLabels$labels) >= 2 && ticks$autorange)
             {
                 tmp.n <- length(axisLabels$ymd)
                 tmp.dist <- (difftime(axisLabels$ymd[tmp.n], axisLabels$ymd[1], units = "secs"))/
@@ -598,7 +599,7 @@ setAxis <- function(title, side, axisLabels, titlefont,
 
         # Override default tick positions if there are only a few column bars
         # and if there will not be too many ticks
-        if (with.bars && length(axisLabels$labels) <= 10)
+        if (with.bars && length(axisLabels$labels) <= 10 && ticks$autorange)
         {
             tmp.n <- length(axisLabels$ymd)
             tmp.dist <- (difftime(axisLabels$ymd[tmp.n], axisLabels$ymd[1], units = "secs"))/
