@@ -206,11 +206,14 @@ getRange <- function(x, axis, axisFormat)
         else if (axis$type == "category") 
             range <- calcRangeCategorical(x)
 
+        if (isTRUE(axis$autorange == "reversed"))
+            range <- rev(range)
     }
 
     # Unspecified axis type or with a date range
     if (is.null(range))
     {
+        # In most cases axisFormat$ymd is specified if axis is a date
         if (!is.null(axisFormat) && length(axisFormat$ymd) >= 2)
         {
             tmp.dates <- sort(unique(as.numeric(axisFormat$ymd))) * 1000
